@@ -3,6 +3,7 @@ phases:
   install:
     commands:
       - npm install
+      - pip install --upgrade aws-sam-cli
   pre_build:
     commands:
       #- npm test
