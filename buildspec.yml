@@ -9,10 +9,10 @@ phases:
   build:
     commands:
       - sam build
-      - sam package --output-template-file packaged.yaml --s3-bucket S3-PRUEBA
+      - sam package --output-template-file packaged.yaml --s3-bucket s3-prueba-aws
   post_build:
     commands:
-      - sam deploy --template-file packaged.yaml --stack-name STACK-PRUEBA --capabilities CAPABILITY_IAM
+      - sam deploy --template-file packaged.yaml --stack-name stack-prueba --capabilities CAPABILITY_IAM
 artifacts:
   files:
     - template.yaml
