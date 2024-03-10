@@ -1,0 +1,18 @@
+version: 0.2
+phases:
+  install:
+    commands:
+      - npm install
+  pre_build:
+    commands:
+      - npm test
+  build:
+    commands:
+      - sam build
+      - sam package --output-template-file packaged.yaml --s3-bucket S3-PRUEBA
+  post_build:
+    commands:
+      - sam deploy --template-file packaged.yaml --stack-name STACK-PRUEBA --capabilities CAPABILITY_IAM
+artifacts:
+  files:
+    - template.yaml
