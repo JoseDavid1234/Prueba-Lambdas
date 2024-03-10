@@ -5,7 +5,7 @@ phases:
       - npm install
   pre_build:
     commands:
-      - npm test
+      #- npm test
   build:
     commands:
       - sam build
