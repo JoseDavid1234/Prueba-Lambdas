@@ -7,8 +7,8 @@ phases:
       - pip install --upgrade aws-sam-cli  # Upgrade the AWS SAM CLI
 
   pre_build:  # Optional: Add steps to validate the template or application
-    # commands:
-    #   - sam validate packaged.yaml  # Validate the SAM template syntax
+    commands:
+      - sam validate packaged.yaml  # Validate the SAM template syntax
     #   - npm test                   # Run unit tests (if applicable)
 
   build:
