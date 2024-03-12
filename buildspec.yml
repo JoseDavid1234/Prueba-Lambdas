@@ -8,7 +8,7 @@ phases:
 
   pre_build:  # Optional: Validate template or application (if applicable)
     commands:
-      - sam validate packaged.yaml  # Validate the SAM template syntax
+      - sam validate --template-file template.yaml
       # - npm test                   # Run unit tests (optional)
 
   build:  # Build your application
