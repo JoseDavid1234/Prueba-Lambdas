@@ -1,0 +1,80 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: 'sam-app
+
+  Sample SAM Template for sam-app
+
+  '
+Globals:
+  Function:
+    Timeout: 3
+Resources:
+  CreateUserFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://s3-prueba-aws/960a9ea1636103243639e4436912f46f
+      Handler: app.lambdaHandler
+      Runtime: nodejs18.x
+      Architectures:
+      - x86_64
+      Events:
+        CreateUser:
+          Type: Api
+          Properties:
+            Path: /user
+            Method: post
+    Metadata:
+      SamResourceId: CreateUserFunction
+  GetUserFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://s3-prueba-aws/7dfc8590f6d08382a461f4449bb8c699
+      Handler: app.lambdaHandler
+      Runtime: nodejs18.x
+      Architectures:
+      - x86_64
+      Events:
+        GetUser:
+          Type: Api
+          Properties:
+            Path: /user/{userId}
+            Method: get
+    Metadata:
+      SamResourceId: GetUserFunction
+  UpdateUserFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://s3-prueba-aws/700552a7260686c49d2b880001d02aae
+      Handler: app.lambdaHandler
+      Runtime: nodejs18.x
+      Architectures:
+      - x86_64
+      Events:
+        UpdateUser:
+          Type: Api
+          Properties:
+            Path: /user/{userId}
+            Method: put
+    Metadata:
+      SamResourceId: UpdateUserFunction
+  DeleteUserFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://s3-prueba-aws/0d5ce1e182aed1d3ac4eb227fb668da3
+      Handler: app.lambdaHandler
+      Runtime: nodejs18.x
+      Architectures:
+      - x86_64
+      Events:
+        DeleteUser:
+          Type: Api
+          Properties:
+            Path: /user/{userId}
+            Method: delete
+    Metadata:
+      SamResourceId: DeleteUserFunction
+Outputs:
+  ApiGatewayUrl:
+    Description: API Gateway endpoint URL for Prod stage
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/

@@ -18,7 +18,7 @@ phases:
   post_build:  # Package and deploy your application
     commands:
       - sam package --template-file template.yaml --output-template-file packaged.yaml --s3-bucket s3-prueba-aws
-      - aws cloudformation deploy --template-file packaged.yaml --stack-name stack-prueba --capabilities CAPABILITY_IAM
+      - aws cloudformation deploy --template-file packaged.yaml --stack-name stack-prueba --capabilities CAPABILITY_NAMED_IAM --region us-east-1
 
 artifacts:
   files:

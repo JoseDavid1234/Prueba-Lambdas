@@ -2,10 +2,10 @@ const mysql = require('mysql2');
 const dotenv = require('dotenv');
 const path = require('path');
 
-// Aquí asumimos que tu script está en algún lugar dentro de la carpeta 'lambda'
-// y que el archivo .env está en la raíz de tu proyecto.
+// por fin salio!!! :D
+
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
-// Ajusta tus configuraciones como antes
+
 const config = {
     dbHost: process.env.DB_HOST,
     dbUser: process.env.DB_USER,
