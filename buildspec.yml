@@ -1,19 +1,34 @@
 version: 0.2
+
 phases:
   install:
     commands:
-      - npm install
-      - pip install --upgrade aws-sam-cli
-  pre_build:
-    commands:
-      #- npm test
+      - npm install  # Install Node.js dependencies (if applicable)
+      - pip install --upgrade aws-sam-cli  # Upgrade the AWS SAM CLI
+
+  pre_build:  # Optional: Add steps to validate the template or application
+    # commands:
+    #   - sam validate packaged.yaml  # Validate the SAM template syntax
+    #   - npm test                   # Run unit tests (if applicable)
+
   build:
     commands:
-      - sam build
-      - sam package --output-template-file packaged.yaml --s3-bucket s3-prueba-aws
+      - sam build  # Build your application (adjust if using a different build process)
+
+  package:
+    commands:
+      - sam package \
+          --template-file packaged.yaml \
+          --output-template-file packaged.yaml \
+          --s3-bucket s3-prueba-aws  # Specify the S3 bucket for deployment resources
+
   post_build:
     commands:
-      - sam deploy --template-file packaged.yaml --stack-name stack-prueba --capabilities CAPABILITY_IAM
+      - aws cloudformation deploy \
+          --template-file packaged.yaml \
+          --stack-name stack-prueba \
+          --capabilities CAPABILITY_IAM
+
 artifacts:
   files:
-    - template.yaml
+    - template.yaml  # Include the original template for reference
